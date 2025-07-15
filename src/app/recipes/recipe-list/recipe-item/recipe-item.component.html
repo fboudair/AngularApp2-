@@ -1,0 +1,27 @@
+<div class="recipe-card" (click)="onClick()">
+
+  <div class="recipe-content">
+    <h4>{{ recipe.name }}</h4>
+    <p>{{ recipe.description }}</p>
+
+    <button 
+      (click)="onToggleFavorite($event)" 
+      class="favorite-btn"
+      [class.favorited]="recipe.isFavorite"
+      aria-label="Toggle Favorite"
+      title="Toggle Favorite"
+      type="button"
+    >
+      {{ recipe.isFavorite ? '★' : '☆' }}
+    </button>
+  </div>
+
+  <div class="recipe-image-wrapper">
+    <img 
+      [src]="recipe.imagePath" 
+      [alt]="recipe.name" 
+      class="recipe-image"
+    >
+  </div>
+
+</div>

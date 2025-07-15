@@ -1,0 +1,24 @@
+<nav class="navbar navbar-default"> <!-- Bootstrap-based navigation bar -->
+  <div class="container-fluid">
+    <div class="navbar-header"> <!-- Logo / Brand section -->
+      <a href="#" class="navbar-brand">Recipe Book</a> <!-- The brand or app name -->
+    </div>
+    <!-- Collapsible part of the navbar (not wired to toggle here) -->
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">        <!-- Left-side navigation links -->
+        <li><a routerLink="/recipes">Recipes</a></li>          <!-- Link to Recipes page using Angular's routerLink -->
+        <li><a routerLink="/shopping-list">Shopping List</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">       <!-- Right-side dropdown menu for future management actions -->
+        <li class="dropdown">
+                    <!-- Dropdown toggle link -->
+          <a href="#" class="dropdown-toggle" role="button">Manage <span class="caret"></span> <!-- Dropdown arrow --></a>
+          <ul class="dropdown-menu"> <!-- Dropdown menu items -->
+            <li><a href="#">Save Data</a></li> <!-- Placeholder for saving data -->
+            <li><a href="#">Fetch Data</a></li> <!-- Placeholder for loading data -->
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

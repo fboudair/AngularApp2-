@@ -1,0 +1,33 @@
+<form [formGroup]="recipeForm" (ngSubmit)="onSubmit()"> <!-- Form uses Angular's reactive forms via [formGroup] -->
+  <div>  <!-- Recipe name input -->
+    <label>Name</label>
+    <input type="text" formControlName="name">
+  </div>
+ <!-- Recipe image URL input -->
+  <div>
+    <label>Image URL</label>
+    <input type="text" formControlName="imagePath">
+  </div>
+ <!-- Recipe description input -->
+  <div>
+    <label>Description</label>
+    <textarea formControlName="description"></textarea>
+  </div>
+ <!-- Ingredients section as a FormArray -->
+<div formArrayName="ingredients">
+  <h4>Ingredients</h4>
+  <button type="button" (click)="onAddIngredient()">Add Ingredient</button> <!-- Button to add a new ingredient -->
+<!-- Loop through each ingredient form group inside the array -->
+  <div
+    *ngFor="let ingredientCtrl of ingredientsControls; let i = index"
+    [formGroupName]="i"
+    class="ingredient-row">
+    <input placeholder="Name" formControlName="name" /> <!-- Input for ingredient name -->
+    <input placeholder="Amount" formControlName="amount" type="number" /> <!-- Input for ingredient amount -->
+  </div>
+</div>
+
+ <!-- Submit button, disabled if form is invalid -->
+  <button type="submit" [disabled]="!recipeForm.valid">Save</button>
+  <button type="button" (click)="onCancel()">Cancel</button> <!-- Cancel button triggers a cancel method -->
+</form>

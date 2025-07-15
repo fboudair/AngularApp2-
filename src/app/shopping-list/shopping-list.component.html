@@ -1,0 +1,25 @@
+<div class="row"> <!-- Main layout row -->
+  <div class="col-xs-10">  <!-- Column for the shopping list (using Bootstrap col-xs-10 for layout) -->
+    <!-- Include the shopping-edit component (child component) -->
+      <!-- Binding custom events and input properties -->
+    <app-shopping-edit
+      (ingredientAdded)="onIngredientAdded($event)" 
+      [selectedIndex]="selectedIngredientIndex"   
+      (deleteSelected)="onDeleteSelected()"
+    ></app-shopping-edit>
+    <hr>
+        <!-- List of ingredients displayed as Bootstrap list group -->
+    <ul class="list-group">
+        <!-- Loop through each ingredient -->
+      <a
+        class="list-group-item"
+        style="cursor: pointer"
+        *ngFor="let ingredient of ingredients; let i = index"
+        [class.active]="i === selectedIngredientIndex"
+        (click)="onSelectIngredient(i)" 
+      >
+        {{ ingredient.name }} ({{ ingredient.amount }})  <!-- Displays the name and amount of each ingredient -->
+      </a>
+    </ul>
+  </div>
+</div>

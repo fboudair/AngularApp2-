@@ -1,0 +1,103 @@
+form {
+  max-width: 600px;
+  margin: 20px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+form div {
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+form button {
+  margin-right: 10px;
+  min-width: 100px;
+}
+
+form button[type="button"] {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button[type="button"]:hover {
+  background-color: #5a6268;
+}
+
+form button[type="submit"] {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button[type="submit"]:hover:not(:disabled) {
+  background-color: #218838;
+}
+
+form button[type="submit"]:disabled {
+  background-color: #94d3a2;
+  cursor: not-allowed;
+}
+
+h4 {
+  margin-bottom: 10px;
+}
+
+[formArrayName="ingredients"] > div {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+    margin-top: 20px;
+padding-top: 20px;
+  margin-left: 20px;
+}
+.ingredient-row {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  margin: 10px 20px;
+}
+
+.ingredient-input {
+  width: 150px;
+}
+
+
+
+[formArrayName="ingredients"] input {
+  flex: 1;
+    margin: 0 20px 20px 20px; 
+
+}

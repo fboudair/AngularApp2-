@@ -1,0 +1,23 @@
+<form (ngSubmit)="onAddItem()"> <!-- Form element that triggers onAddItem() method when submitted -->
+  <div class="row"> <!-- First row: input fields for name and amount -->
+    <div class="col-sm-5 form-group">  <!-- Input field for ingredient name -->
+      <label for="name">Name</label>
+      <!-- Input ID (linked to label) -->  <!-- Bootstrap styling --> <!-- Two-way binding to nameInput variable --> <!-- Required for ngModel in template-driven forms -->
+      <input type="text" id="name" class="form-control" [(ngModel)]="nameInput" name="name">
+    </div>
+    <div class="col-sm-2 form-group">
+      <label for="amount">Amount</label> <!-- Input field for ingredient amount -->
+      <input type="number" id="amount" class="form-control" [(ngModel)]="amountInput" name="amount">
+    </div>
+  </div>
+  <div class="row">  <!-- Second row: action buttons -->
+    <div class="col-xs-12">
+       <!-- Submit button: triggers form submission and onAddItem() -->
+      <button class="btn btn-success" type="submit">Add</button>
+       <!-- Delete button: calls onDeleteItem() -->
+      <button class="btn btn-danger" type="button" (click)="onDeleteItem()">Delete</button>
+       <!-- Clear button: calls onClearForm() -->
+      <button class="btn btn-primary" type="button" (click)="onClearForm()">Clear</button>
+    </div>
+  </div>
+</form>
