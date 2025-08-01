@@ -1,27 +1,45 @@
-# CourseProjectCmpFinal
+# 🍽 Recipe Web App
+A responsive recipe management application built with **Angular** and **Bootstrap 5**.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.0-rc.5.
+This project was generated with [Angular CLI][![View on GitHub](https://img.shields.io/badge/GitHub-Repo-blue?logo=github)](https://github.com/fboudair/AngularApp2-.git)
 
-## Development server
+## Overview
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+The **Recipe Web App** is a **responsive platform** where users can:
+- 🍲 **Browse** a variety of recipes  
+- 📜 **View** recipe details including ingredients and instructions  
+- ✏️ **Add, Edit, and Delete** recipes  
+- 🛒 **Maintain** a shopping list for ingredients  
+- 📅 **Plan meals** and explore new cooking ideas
 
-## Code scaffolding
+## ✨ Features
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+📜 **Recipe Listing** – Browse recipes with ingredients & instructions  
+🛒 **Shopping List** – Manage and track ingredients easily  
+➕ **Add & Edit Recipes** – Built using Angular Reactive Forms  
+🔄 **Two-Way Data Binding** – Seamless updates between forms and UI  
+🖼 **Responsive Design** – Optimized for desktop and mobile with Bootstrap 5
 
-## Build
+## 🛠 Tech Stack
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Frontend:** Angular 15+, TypeScript, HTML5, CSS3, Bootstrap 5  
+- **Forms:** Template-driven & Reactive Forms  
+- **Routing:** Angular Router with child routes  
+- **Other Tools:** Node.js, npm
 
-## Running unit tests
+  ## 📦 Installation & Setup
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+  To run this project locally:
 
-## Running end-to-end tests
+```bash
+# 1️⃣ Clone the repository
+git clone https://github.com/fboudair/AngularApp2-.git
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+# 2️⃣ Navigate to the project folder
+cd AngularApp2-
 
-## Further help
+# 3️⃣ Install dependencies
+npm install
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+# 4️⃣ Start the development server
+ng serve
