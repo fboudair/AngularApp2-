@@ -1,0 +1,71 @@
+<div class="container">
+  <h2>Search Recipes</h2>
+ <!-- Search Input Field + Button -->
+  <div class="input-group mb-3">
+      <!-- Two-way data binding for search input --> <!-- Trigger search on Enter key -->  <!-- Trigger search on click -->
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"   
+      class="form-control"
+      placeholder="Enter recipe name..."
+      (keyup.enter)="search()"    
+    />
+ <button class="btn btn-outline-primary" type="button" (click)="search()">
+  Search
+</button>
+  </div>
+ <!-- Suggested Keyword Tags (clickable badges) --> <!-- Loop through predefined keywords -->  <!-- Trigger search using clicked keyword -->
+  <div class="mt-2 mb-3">
+    <span
+      *ngFor="let keyword of searchKeywords"
+      class="badge bg-secondary me-2"
+      style="cursor: pointer;"
+      (click)="searchByKeyword(keyword)"
+      >{{ keyword }}</span
+    >
+  </div>
+<!-- Search Results Section -->   <!-- Loop through filtered results -->
+  <div class="row mt-4" *ngIf="filteredRecipes.length > 0">
+    <h4>Results:</h4>
+    <div
+      class="col-sm-6 col-md-4 col-lg-3 mb-4"
+      *ngFor="let recipe of filteredRecipes"   
+    >
+    <!-- Clickable Recipe Card -->  <!-- Show recipe details on click -->    <!-- Recipe image -->
+      <div
+        class="text-decoration-none text-center d-block"
+        style="cursor: pointer;"
+        (click)="onRecipeClick(recipe)"
+      >
+        <img
+          [src]="recipe.imagePath"
+          [alt]="recipe.name"
+          class="img-fluid rounded mb-2"
+          style="width: 300px; height: 300px; object-fit: cover; display: block; margin: 0 auto;"
+        />
+        <div class="recipe-name">{{ recipe.name }}</div>  <!-- Recipe title -->
+      </div>
+    </div>
+  </div>
+ <!-- Message if no results found -->
+  <div *ngIf="searchTerm && filteredRecipes.length === 0" class="mt-4 text-danger">
+    No recipes found.
+  </div>
+ <!-- Recipe Details Section (after clicking a result) -->
+  <div *ngIf="selectedRecipe" class="recipe-details mt-5 p-4 border rounded bg-light">
+    <h3>{{ selectedRecipe.name }}</h3>
+    <img
+      [src]="selectedRecipe.imagePath"
+      [alt]="selectedRecipe.name"
+      class="img-fluid rounded mb-3"
+      style="max-width: 400px; height: auto;"
+    />
+    <p>{{ selectedRecipe.description }}</p>
+    <h5>Ingredients:</h5>
+    <ul>
+      <li *ngFor="let ingredient of selectedRecipe.ingredients">
+        {{ ingredient.name }} - {{ ingredient.amount }}   <!-- List each ingredient -->
+      </li>
+    </ul>
+  </div>
+</div>

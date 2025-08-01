@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Recipe } from './recipe.model';
 import { RecipeService } from './recipe.service';
 import { Subscription } from 'rxjs';
+import { DataStorageService } from '../shared/data-storage-service';
 
 @Component({
   selector: 'app-recipes',
@@ -14,7 +15,10 @@ export class RecipesComponent implements OnInit, OnDestroy {
   recipes: Recipe[] = [];  // List of all recipes to display
   private subscription!: Subscription;  // Subscription to recipe changes for cleanup
 
-  constructor(private recipeService: RecipeService) { }
+  constructor(
+    private recipeService: RecipeService,
+    private dataStorageService: DataStorageService
+  ) { }
 
   ngOnInit(): void {  // Initially load all recipes from the service
     this.recipes = this.recipeService.getRecipes();
@@ -60,6 +64,20 @@ onFavoriteToggled(index: number) {   // Called when favorite toggle event occurs
   }
  // Called when a new recipe is requested (e.g., from the list component)
   onNewRecipe() {
-    this.selectedRecipe = new Recipe('', '', '', []);  // Initialize a new empty recipe and select it to edit
+    this.selectedRecipe = new Recipe(0,'', '', '', []);  // Initialize a new empty recipe and select it to edit
+  }
+
+  onSaveData() {
+    this.dataStorageService.storeRecipes(this.recipeService.getRecipes())
+      .subscribe(response => {
+        console.log('Recipes saved:', response);
+      });
+  }
+
+  onFetchData() {
+    this.dataStorageService.fetchRecipes()
+      .subscribe(recipes => {
+        this.recipeService.setRecipes(recipes || []);
+      });
   }
 }

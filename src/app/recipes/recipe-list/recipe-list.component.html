@@ -1,11 +1,21 @@
-<div class="row">
-  <div class="col-xs-12">
-    <button class="btn btn-success" [routerLink]="['/recipes/new']">New Recipe</button>
+<div class="row mb-3">
+  <div class="col-12 d-flex gap-2 flex-wrap align-items-center">
+    <!-- New Recipe Button -->
+    <button class="btn btn-success" [routerLink]="['/recipes/new']">➕ New Recipe</button>
+
+    <!-- Save Recipes Button -->
+    <button class="btn btn-primary" (click)="onSaveData()">💾 Save Recipes</button>
+
+    <!-- Fetch Recipes Button -->
+    <button class="btn btn-secondary" (click)="onFetchData()">🔄 Fetch Recipes</button>
   </div>
 </div>
-<hr>
+
+<hr />
+
+<!-- Recipe List -->
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-12">
     <app-recipe-item 
       *ngFor="let recipeEl of recipes; let i = index"
       [recipe]="recipeEl"

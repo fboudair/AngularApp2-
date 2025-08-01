@@ -1,0 +1,31 @@
+<div class="container">
+   <!-- Page Heading -->
+  <h2>Share Your Thoughts</h2>
+  <!-- Comment Form -->
+  <form (submit)="submitComment()" #commentForm="ngForm">
+     <!-- Email input field -->
+    <div class="mb-3">
+      <input [(ngModel)]="email" name="email" type="email" class="form-control" placeholder="Your email" required>
+    </div>
+ <!-- Title input field -->
+    <div class="mb-3">
+      <input [(ngModel)]="title" name="title" type="text" class="form-control" placeholder="Title" required>
+    </div>
+<!-- Comment textarea -->
+    <div class="mb-3">
+      <textarea [(ngModel)]="comment" name="comment" rows="5" class="form-control" placeholder="Write your comment here..." required></textarea>
+    </div>
+ <!-- Submit button -->
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+ <!-- Display previously submitted comments -->
+  <div class="mt-4" *ngIf="comments.length > 0">
+    <h4>Previous Comments:</h4>
+    <ul>
+      <li *ngFor="let c of comments">
+        <strong>{{ c.title }}</strong> by {{ c.email }}<br>
+        {{ c.comment }}
+      </li>
+    </ul>
+  </div>
+</div>

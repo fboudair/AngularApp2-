@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/cor
 import { Recipe } from '../recipe.model';
 import { Subscription } from 'rxjs';
 import { RecipeService } from '../recipe.service';
+import { DataStorageService } from '../../shared/data-storage-service';
 
 @Component({
   selector: 'app-recipe-list',
@@ -10,13 +11,16 @@ import { RecipeService } from '../recipe.service';
 })
 export class RecipeListComponent implements OnInit, OnDestroy {
   @Output() recipeSelected = new EventEmitter<Recipe>();
-  @Output() newRecipeRequested = new EventEmitter<void>();  
+  @Output() newRecipeRequested = new EventEmitter<void>();
   @Output() favoriteToggled = new EventEmitter<number>();
 
   recipes: Recipe[] = [];
   private subscription!: Subscription;
 
-  constructor(private recipeService: RecipeService) {}
+  constructor(
+    private recipeService: RecipeService,
+    private dataStorageService: DataStorageService
+  ) {}
 
   ngOnInit(): void {
     this.recipes = this.recipeService.getRecipes();
@@ -39,5 +43,28 @@ export class RecipeListComponent implements OnInit, OnDestroy {
 
   onNewRecipe() {
     this.newRecipeRequested.emit();
+  }
+
+  onSaveData() {
+    const recipes = this.recipeService.getRecipes();
+    this.dataStorageService.storeRecipes(recipes).subscribe({
+      next: (response) => {
+        console.log('Recipes saved!', response);
+      },
+      error: (error) => {
+        console.error('Error saving recipes:', error);
+      }
+    });
+  }
+
+  onFetchData() {
+    this.dataStorageService.fetchRecipes().subscribe({
+      next: (recipes) => {
+        this.recipeService.setRecipes(recipes);
+      },
+      error: (error) => {
+        console.error('Error fetching recipes:', error);
+      }
+    });
   }
 }

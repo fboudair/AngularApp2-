@@ -6,11 +6,11 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class RecipeService {
-// Emits whenever the recipe list changes (useful for components to stay in sync)
+  // Emits whenever the recipe list changes (useful for components to stay in sync)
   recipesChanged = new Subject<Recipe[]>();
   // Internal list of recipes (pre-filled with 5 recipes)
   private recipes: Recipe[] = [
-    new Recipe(
+    new Recipe(1,
       'Chicken Curry',
       'A warm, aromatic classic chicken curry.',
       'assets/images/chicken-curry-recipe.jpg',
@@ -31,8 +31,9 @@ export class RecipeService {
         { name: 'Garam masala (tsp)', amount: 1 },
         { name: 'Black pepper (optional, tsp)', amount: 0.5 }
       ],
+      19.99
     ),
-    new Recipe(
+    new Recipe(2,
       'Indian Lamb Curry',
       'Indian Lamb Curry is a rich, flavorful dish where tender lamb is slowly cooked in a blend of warming spices, tomatoes, onions, and aromatics. It\'s hearty, deeply spiced, and perfect for a comforting meal with rice or Indian breads.',
       'assets/images/Indian-Lamb-Curry.jpeg',
@@ -56,9 +57,9 @@ export class RecipeService {
         { name: 'Cumin Powder (tsp)', amount: 1 },
         { name: 'Ground Black Pepper (tsp)', amount: 0.5 },
         { name: 'Garam Masala (tsp)', amount: 1 }
-      ]
+      ],29.99
     ),
-    new Recipe(
+    new Recipe(3,
       'Pot Shrimps in Coconut Sauce',
       'This tropical-inspired dish features juicy shrimp simmered in a creamy coconut milk sauce, enriched with garlic, ginger, and warming spices. Perfect with rice, it\'s both comforting and elegant — a quick seafood curry with big flavor.',
       'assets/images/PotShrimps.jpg',
@@ -79,9 +80,10 @@ export class RecipeService {
         { name: 'Cumin Powder (tsp)', amount: 0.5 },
         { name: 'Coriander Powder (tsp)', amount: 0.5 },
         { name: 'Black Pepper (pinch)', amount: 1 }
-      ]
+      ],
+    15.99
     ),
-    new Recipe(
+    new Recipe(4,
       'Lamb with Pappardelle Pasta',
       'This luxurious pasta dish features melt-in-your-mouth lamb braised in a rich tomato and red wine sauce, tossed with wide ribbons of pappardelle pasta. A hearty and elegant meal, perfect for special dinners or cozy Sundays.',
       'assets/images/Lamb-with-Pasta.jpg',
@@ -104,9 +106,10 @@ export class RecipeService {
         { name: 'Grated Parmesan or Pecorino (for serving)', amount: 1 },
         { name: 'Pappardelle Pasta (g)', amount: 300 },
         { name: 'Salt for boiling water', amount: 1 }
-      ]
+      ],
+    24.99
     ),
-    new Recipe(
+    new Recipe(5,
       'The Best Classic Strawberry Shortcake',
       'A golden, tender shortcake biscuit layered with juicy macerated strawberries and freshly whipped cream. This traditional American dessert is sweet, buttery, light, and beautifully balanced — the ultimate celebration of fresh strawberries.',
       'assets/images/shortcake.jpg',
@@ -124,14 +127,15 @@ export class RecipeService {
         { name: 'Heavy Whipping Cream (cups)', amount: 1 },
         { name: 'Powdered Sugar (tbsp)', amount: 2 },
         { name: 'Vanilla Extract (tsp)', amount: 0.5 }
-      ]
+      ],
+    6.99
     )
   ];
   // Returns a shallow copy of the recipe list (to avoid direct mutation)
   getRecipes() {
     return this.recipes.slice();
   }
-// Returns a single recipe by index
+  // Returns a single recipe by index
   getRecipe(index: number) {
     return this.recipes[index];
   }
@@ -140,18 +144,24 @@ export class RecipeService {
     this.recipes.push(recipe);
     this.recipesChanged.next(this.getRecipes()); // Emit updated list
   }
-// Updates a recipe at a given index and notifies subscribers
+  // Updates a recipe at a given index and notifies subscribers
   updateRecipe(index: number, newRecipe: Recipe) {
     this.recipes[index] = newRecipe;
     this.recipesChanged.next(this.getRecipes());  // Emit updated list
-  } 
-// Deletes a recipe at the given index and notifies subscribers
+  }
+  // Deletes a recipe at the given index and notifies subscribers
   deleteRecipe(index: number) {
     this.recipes.splice(index, 1);
     this.recipesChanged.next(this.getRecipes());// Emit updated list
   }
   toggleFavorite(index: number) {  // Toggles the "isFavorite" property of a recipe
-  this.recipes[index].isFavorite = !this.recipes[index].isFavorite;
-  this.recipesChanged.next(this.getRecipes());  // Emit updated list
-}
+    this.recipes[index].isFavorite = !this.recipes[index].isFavorite;
+    this.recipesChanged.next(this.getRecipes());  // Emit updated list
+  }
+  
+  // Sets the entire list of recipes (used for loading from backend)
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
+    this.recipesChanged.next(this.getRecipes());
+  }
 }

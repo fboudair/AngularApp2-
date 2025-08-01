@@ -11,8 +11,17 @@ import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-it
 import { ShoppingListComponent } from './shopping-list/shopping-list.component'; // Form component for adding/editing recipes.
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component'; // Shows the list of shopping ingredients.
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component'; // Form for adding, editing, and deleting shopping list items.
-import { AppRoutingModule } from './app-routing.module';  // Custom routing configuration for navigating between views.
- // All components, directives, and pipes that belong to this module
+import { AppRoutingModule } from './app-routing.module';
+import { FooterComponent } from './footer/footer.component';
+import { CartComponent } from './cart/cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { CommentComponent } from './comment/comment.component';
+import { SearchComponent } from './search/search.component';  // Custom routing configuration for navigating between views.
+
+import { HttpClientModule } from '@angular/common/http';
+import { DataStorageService } from './shared/data-storage-service';
+import { FoodNewsComponent } from './food-news/food-news.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,16 +32,22 @@ import { AppRoutingModule } from './app-routing.module';  // Custom routing conf
     RecipeItemComponent,
     ShoppingListComponent,
     ShoppingEditComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    FooterComponent,
+    CartComponent,
+    CheckoutComponent,
+    CommentComponent,
+    SearchComponent,
+    FoodNewsComponent
   ],
   imports: [ // External modules this module depends on
     BrowserModule,  // Required to run the app in a browser
     FormsModule,   // Enables template-driven forms
     ReactiveFormsModule ,  // Enables reactive (model-driven) forms
-    AppRoutingModule   // Adds routing capabilities
-    
+    AppRoutingModule,   // Adds routing capabilities
+    HttpClientModule
   ],
-  providers: [],
+  providers: [DataStorageService],
   bootstrap: [AppComponent]  // The component to bootstrap when this module is loaded (root component)
 })
 export class AppModule { }

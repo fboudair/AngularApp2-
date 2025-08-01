@@ -1,0 +1,13 @@
+.food-news h1 {
+  font-size: 2.5rem;
+  color: #d63384;
+}
+
+.food-news .card-title {
+  font-weight: 600;
+}
+
+.food-news .card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
